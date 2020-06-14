@@ -1,6 +1,5 @@
-GoThemes.white.Plain.prototype.placeWhiteStone =
-    function(ctx, shadow_ctx, stone, cx, cy, radius) {
-        var color = this.getWhiteStoneColor();
+var placeStoneFn = function(color) {
+    return function(ctx, shadow_ctx, stone, cx, cy, radius) {
         let lineWidth = radius * 0.10;
         if (lineWidth < 0.3) {
             lineWidth = 0;
@@ -17,4 +16,8 @@ GoThemes.white.Plain.prototype.placeWhiteStone =
         }
         ctx.fill();
     };
+};
+
+GoThemes.white.Plain.prototype.placeWhiteStone = placeStoneFn(this.getWhiteStoneColor());
+GoThemes.black.Plain.prototype.placeBlackStone = placeStoneFn(this.getBlackStoneColor());
 console.log("[ogs flat style] done");
