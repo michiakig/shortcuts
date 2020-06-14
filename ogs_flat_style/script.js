@@ -18,6 +18,19 @@ var placeStoneFn = function(color) {
     };
 };
 
-GoThemes.white.Plain.prototype.placeWhiteStone = placeStoneFn(this.getWhiteStoneColor());
-GoThemes.black.Plain.prototype.placeBlackStone = placeStoneFn(this.getBlackStoneColor());
+var lightGreen = "#1ABC9C";
+var lineColor = "#847330"
+var white = 'hsl(0, 0%, 95%)';
+var black = 'hsl(0, 0%, 20%)';
+
+GoThemes.board.Plain.prototype.getLineColor = function() { return lineColor; }
+GoThemes.board.Plain.prototype.getStarColor = function() { return lineColor; }
+GoThemes.white.Plain.prototype.placeWhiteStone = placeStoneFn(white);
+GoThemes.black.Plain.prototype.placeBlackStone = placeStoneFn(black);
+
+document.body.classList.remove("light");
+document.body.classList.remove("dark");
+document.getElementsByClassName("chat-log")[0].style.backgroundColor = lightGreen
+document.body.style.backgroundColor = lightGreen;
+
 console.log("[ogs flat style] done");
