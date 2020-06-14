@@ -42,10 +42,11 @@
     const style = document.createElement('style');
     style.textContent = `
     div.MainGobanView {
-        background-color: #1ABC9C /* turquoise */
+        /* turquoise */
+        background-color: #1ABC9C !important;
     }
     body.light div.Goban {
-        box-shadow: none;
+        box-shadow: none !important;
     }
     `;
     document.head.append(style);
