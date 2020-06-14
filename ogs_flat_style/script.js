@@ -1,3 +1,4 @@
+// custom place stone function for flat edges
 var placeStoneFn = function(color) {
     return function(ctx, shadow_ctx, stone, cx, cy, radius) {
         let lineWidth = radius * 0.10;
@@ -18,19 +19,35 @@ var placeStoneFn = function(color) {
     };
 };
 
-var lightGreen = "#1ABC9C";
-var lineColor = "#847330"
+var turquoise = "#1ABC9C";
+var sea = "#16A085";
+var emerald = "#2ECC71";
+var nephritis = "#27AE60";
+
+var line = "#847330"
+var board = "#e4bb67"
 var white = 'hsl(0, 0%, 95%)';
 var black = 'hsl(0, 0%, 20%)';
 
-GoThemes.board.Plain.prototype.getLineColor = function() { return lineColor; }
-GoThemes.board.Plain.prototype.getStarColor = function() { return lineColor; }
+data.set("custom.black", black);
+data.set("custom.white", white);
+data.setDefault("custom.board", board);
+data.setDefault("custom.line", line);
+
 GoThemes.white.Plain.prototype.placeWhiteStone = placeStoneFn(white);
 GoThemes.black.Plain.prototype.placeBlackStone = placeStoneFn(black);
 
-document.body.classList.remove("light");
-document.body.classList.remove("dark");
-document.getElementsByClassName("chat-log")[0].style.backgroundColor = lightGreen
-document.body.style.backgroundColor = lightGreen;
+// inject CSS
+const style = document.createElement('style');
+style.textContent = `
+div.MainGobanView {
+    background-color: #1ABC9C /* turquoise */
+}
+body.light div.Goban {
+    box-shadow: none;
+}
+`;
+document.head.append(style);
 
-console.log("[ogs flat style] done");
+// click the theme selector which will trigger a redraw
+document.querySelector("div.theme-set div.selector").click();
