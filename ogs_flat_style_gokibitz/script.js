@@ -37,8 +37,8 @@
         var emerald = "#2ECC71";
         var nephritis = "#27AE60";
 
-        var line = "#847330"
-        var board = "#e4bb67"
+        var line = "#847330";
+        var board = "#e4bb67";
         var white = 'hsl(0, 0%, 95%)';
         var black = 'hsl(0, 0%, 20%)';
 
@@ -91,7 +91,7 @@
         // click the theme selector which will trigger a redraw
         document.querySelector("div.theme-set div.selector").click();
 
-        console.log("[ogs flat style gokibitz] done")
+        console.log("[ogs flat style gokibitz] done");
     };
 
     // set up the mutation observer
@@ -100,7 +100,7 @@
             setup();
             me.disconnect(); // stop observing
         } else {
-            console.log("[ogs flat style gokibits] data or GoThemes not found, waiting...")
+            console.log("[ogs flat style gokibits] data or GoThemes not found, waiting...");
         }
     });
 
