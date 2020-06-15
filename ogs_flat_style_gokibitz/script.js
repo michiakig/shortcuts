@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         ogs flat style gokibitz
-// @version      0.1
+// @version      0.2
 // @description  mimic GoKibitz style on OGS
 // @author       michiakig
 // @match        https://online-go.com/*
