@@ -54,19 +54,37 @@
         // inject CSS
         const style = document.createElement('style');
         style.textContent = `
-        div.MainGobanView {
-            /* turquoise */
-            background-color: #1ABC9C !important;
+        :root {
+            --turquoise: #1ABC9C;
+            --sea: #16A085;
         }
+    
+        /* background colors */
+        div#NavBar {
+            background-color: #16A085 !important;
+        }
+        div.Puzzle {
+            background-color: var(--turquoise) !important;
+        }
+        div.MainGobanView {
+            background-color: var(--turquoise) !important;
+        }
+    
+        /* together these flatten the border between main view and top bar, and fix for zen mode */
+        div.Game.zen {
+            top: 0rem; !important
+        }
+        div.Game {
+            top: 2.0rem; !important
+        }
+        div.Puzzle {
+            top: 2.0rem; !important
+        }
+    
+        /* remove shadow from board */
         body.light div.Goban {
             box-shadow: none !important;
         }
-        body.light .chat-container {
-            background-color: #e9e9e9;
-        }
-        body.dark .chat-container {
-            background-color: #484848;
-        }          
         `;
         document.head.append(style);
 
