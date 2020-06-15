@@ -19,7 +19,7 @@
                     lineWidth = 0;
                 }
                 ctx.fillStyle = color;
-                ctx.strokeStyle = color;
+                ctx.strokeStyle = color; // changed to use same color as stone, instead of line color
                 if (lineWidth > 0) {
                     ctx.lineWidth = lineWidth;
                 }
