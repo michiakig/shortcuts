@@ -95,6 +95,7 @@
     };
 
     // set up the mutation observer
+    // altho this should be installed with @run-at idle, I still saw the code run prior to these globals being available, so just watch the page for updates until they are present
     var observer = new MutationObserver(function (mutations, me) {
         if (typeof data !== "undefined" && typeof GoThemes !== "undefined") {
             setup();
