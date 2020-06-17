@@ -88,9 +88,17 @@
             box-shadow: none !important;
         }
 
-
+        /* fullscreen toggle icon */
+        div.FullScreenToggle div {
+            font-family: sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4d4d4d;
+        }
         div.FullScreenToggle {
-            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: fixed;
             bottom: .5rem;
             left: .5rem;
@@ -100,14 +108,16 @@
         `;
         document.head.append(style);
 
-        var fullscreen = document.createElement('div');
-        fullscreen.classList.add("FullScreenToggle");
-        fullscreen.addEventListener("click", toggleFullScreen, false);
-
-        document.body.appendChild(fullscreen);
-
-        // document.querySelector('.Dock > a:nth-child(2)').addEventListener("click", toggleFullScreen, false);
-        // document.querySelector('i.ogs-zen-mode').addEventListener("click", toggleFullScreen, false);
+        // only inject the full screen toggle on iPad:
+        if (document.documentElement.webkitRequestFullscreen) {
+            var fullscreen = document.createElement('div');
+            fullscreen.classList.add("FullScreenToggle");
+            fullscreen.addEventListener("click", toggleFullScreen, false);
+            var inner = document.createElement('div');
+            inner.innerHTML="F";
+            fullscreen.appendChild(inner);
+            document.body.appendChild(fullscreen);
+        }
 
         // click the theme selector which will trigger a redraw
         document.querySelector("div.theme-set div.selector").click();
