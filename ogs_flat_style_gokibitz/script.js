@@ -11,6 +11,8 @@
 (function() {
     function setup() {
         console.log("[ogs flat style gokibitz] setting up");
+
+
         // custom place stone function for flat edges
         var placeStoneFn = function(color) {
             return function(ctx, shadow_ctx, stone, cx, cy, radius) {
@@ -85,8 +87,27 @@
         body.light div.Goban {
             box-shadow: none !important;
         }
+
+
+        div.FullScreenToggle {
+            background-color: pink;
+            position: fixed;
+            bottom: .5rem;
+            left: .5rem;
+            width: 2rem;
+            height: 2rem;
+        }
         `;
         document.head.append(style);
+
+        var fullscreen = document.createElement('div');
+        fullscreen.classList.add("FullScreenToggle");
+        fullscreen.addEventListener("click", toggleFullScreen, false);
+
+        document.body.appendChild(fullscreen);
+
+        // document.querySelector('.Dock > a:nth-child(2)').addEventListener("click", toggleFullScreen, false);
+        // document.querySelector('i.ogs-zen-mode').addEventListener("click", toggleFullScreen, false);
 
         // click the theme selector which will trigger a redraw
         document.querySelector("div.theme-set div.selector").click();
@@ -113,8 +134,6 @@
     var observer = new MutationObserver(function (mutations, me) {
         if (typeof data !== "undefined" && typeof GoThemes !== "undefined") {
             setup();
-            document.querySelector('.Dock > a:nth-child(2)').addEventListener("click", toggleFullScreen, false);
-            document.querySelector('i.ogs-zen-mode').addEventListener("click", toggleFullScreen, false);
             me.disconnect(); // stop observing
         } else {
             console.log("[ogs flat style gokibits] data or GoThemes not found, waiting...");
