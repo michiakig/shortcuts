@@ -94,36 +94,27 @@
         console.log("[ogs flat style gokibitz] done");
     };
 
-
-
-    const _toggleFullScreen = function() {
-	if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
-	    if (document.cancelFullScreen) {
-		document.cancelFullScreen();
-	    } else if (document.mozCancelFullScreen) {
-		document.mozCancelFullScreen();
-	    } else if (document.webkitCancelFullScreen) {
-		document.webkitCancelFullScreen();
-	    }
+    function toggleFullScreen() {
+        if (document.webkitFullscreenElement) {
+            if (document.webkitCancelFullScreen) {
+                console.log("[toggleFullscreen] cancelling fullscreen");
+                document.webkitCancelFullScreen();
+            }
         } else {
-	    const _element = document.documentElement;
-	    if (_element.requestFullscreen) {
-		_element.requestFullscreen();
-	    } else if (_element.mozRequestFullScreen) {
-		_element.mozRequestFullScreen();
-	    } else if (_element.webkitRequestFullscreen) {
-		_element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-	    }
-	}
+            if (document.documentElement.webkitRequestFullscreen) {
+                console.log("[toggleFullscreen] enabling fullscreen");
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        }
     };
-
 
     // set up the mutation observer
     // altho this should be installed with @run-at idle, I still saw the code run prior to these globals being available, so just watch the page for updates until they are present
     var observer = new MutationObserver(function (mutations, me) {
         if (typeof data !== "undefined" && typeof GoThemes !== "undefined") {
             setup();
-            _toggleFullScreen();
+            document.querySelector('.Dock > a:nth-child(2)').addEventListener("click", toggleFullScreen, false);
+            document.querySelector('i.ogs-zen-mode').addEventListener("click", toggleFullScreen, false);
             me.disconnect(); // stop observing
         } else {
             console.log("[ogs flat style gokibits] data or GoThemes not found, waiting...");
