@@ -88,6 +88,14 @@
             box-shadow: none !important;
         }
 
+        /* fix so chat matches main theme */
+        body.light .chat-container {
+            background-color:#fff;
+        }
+        body.dark .chat-container {
+            background-color:#1a1a1a;
+        }
+
         /* fullscreen toggle icon */
         div.FullScreenToggle div {
             font-family: sans-serif;
